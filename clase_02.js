@@ -152,7 +152,7 @@ if (pedro > 10 && pedro < 18) {
 if (pedro < 14 || pedro >= 15) {
     console.log("pedro tiene entre 14 y 15")
 }
-// For - Crear bucles // interarcion
+// For - Crear bucles // interacion
 // sintaxis
 // else if
 /*
@@ -167,10 +167,20 @@ if (pedro < 14 || pedro >= 15) {
 //   contador /  expr   / incrementar el i + 1
 //   for ([expresion-inicial]; [condicion]; [expresion-final])sentencia
 for (let i = 1; i <= 100; i++) {
-    // salto de linea "\n"
-    // %
-    console.log(i + "\n")
+    console.log(i) 
+    // % modulo es el residuo de una division   
+    if ((i % 3) === 0 && (i % 5) === 0) {
+        console.log(i + "fizzbuzz")
+    } else if ((i % 3) === 0) {
+        console.log(i + "fizz")
+    } else if ((i % 5) === 0) {
+        console.log(i + "buzz")
+    } 
 }
+/* const numbers = []
+numbers.length = 100
+const lista = numbers.fill(1).map(i => i +1)
+console.log(lista) */
 
 // forEach, for of; for in; async await for; map, filter, find, some, 
 
