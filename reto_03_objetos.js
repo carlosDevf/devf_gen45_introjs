@@ -65,43 +65,65 @@ const nomalizador = function(palabra) {
 // 1 .- divide el problema en pequeños casos: 
 // 2 .- como podria solucionarlo con papel y lapiz
 
-
 Crea un objeto para almacenar la cantidad de cada tipo de fruta. ///
 Usa un ciclo for/while para recorrer el arreglo y contar las frutas.
 Imprime en la consola la cantidad de cada tipo de fruta.
 Opcional: intenta implementar la solución con el otro ciclo también (for/while). */
 
-let manzana = 0
-let platano = 0
-
+const resultados = {}
 for (let i = 0; i < frutas.length; i++) {
   const frutaRaw = frutas[i] // 0... frutas.length 
   // normalizar los datos
   // *** siempre hay que normalizar cuando se trata de entradas del usuario
   // NOTA: 
-  let fruta = nomalizador(frutaRaw)
-  if (fruta === "manzana") {
-    // manzana++
-    manzana = manzana + 1
+  let fruta = nomalizador(frutaRaw)  
+  if (typeof resultados[fruta] === 'undefined') {
+    resultados[fruta] = 1
+  } else {
+    resultados[fruta] = resultados[fruta] + 1 
   }
- 
-  if (fruta === 'platano') {
-    platano = platano + 1
-  }
-
 }
 
-console.log("tengo " + manzana + " manzanas")
-console.log("tengo " + platano + " Plátanos")
-
-
-console.log(nomalizador(" Pe Pé "))
-// 
-console.log("Perro".includes("r"))
-
-// busca si la cadena de texto tiene "cierta palabra", retorna la posicion de esa palabra
-/* console.log("devf".indexOf("p")) */
-const palabraABuscar = "devf" // 
-if (palabraABuscar.indexOf("d") != -1) {
-  console.log("si se contiene")
+console.log(resultados)
+const tienda = {
+// propiedad: valor (number, string, boolean, objeto...)
+// llave : valor
+  manzana: 0,
+  platano: 0,
+  limon: 700,
 }
+
+// como asigno un valor a una propiedad dentro de un objeto
+tienda.manzana = 10
+
+// como accedo al valor o propiedad dentro de un objeto
+// sitaxis de punto (siempre)
+console.log(tienda.limon_saladel)
+console.log(tienda["limon"])
+
+
+// sintaxis de [] // puedo añadir una propiedad
+tienda["naranja"] = 0
+
+console.log(tienda)
+console.log(tienda.naranja)
+
+
+const tiendaLibros = {
+  libros: [],
+  addLibro: function(nuevoLibro) {
+    // this: al mismo objeto
+    return this.libros.push(nuevoLibro)
+  },
+  deleteLibro: function(){}
+}
+
+tiendaLibros.addLibro("el principito")
+tiendaLibros.addLibro("la maquina del tiempo")
+tiendaLibros.addLibro("La guerra y la paz")
+console.log(tiendaLibros)
+// seria el eliminar libro
+// tip para crear la funcion de eliminar libro
+// 1 buscar el elemento: if, 
+// 1 reasignar el arreglo sin ese elemnto
+// filter(), find(), slice(), indexOf()
