@@ -91,3 +91,30 @@ const buscarLibro = function (libroBuscar) {
 /* buscarLibro("El rey leon") */
 // sort(a, b): acomodar objetos* a - b, b - a
 console.log(librosLeidos.find((valor, index) => valor === "El señor de los anillos"))
+
+
+// orden
+const libreriaFunciones = {
+//   Llave  => valor
+    addBook: agregarLibro,
+    showBooks: mostrarLibrosLeidos,
+    addInternalBooks: function(book) {
+        // this.
+        this.books.push(book)
+    },
+    showInternalBooks: function() {
+        console.log(this.books)
+    },
+    books: []
+}
+
+libreriaFunciones.addBook("La maquina del tiempo")
+libreriaFunciones.addInternalBooks("La batalla de Tenochtitlan")
+libreriaFunciones.showInternalBooks()
+libreriaFunciones.books
+// añadir nuevas funciones
+libreriaFunciones.name = "Carlos"
+
+console.log(libreriaFunciones)
+
+// REACT: Promesas:=> arreglo de funciones
