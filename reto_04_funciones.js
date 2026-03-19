@@ -105,7 +105,9 @@ const libreriaFunciones = {
     showInternalBooks: function() {
         console.log(this.books)
     },
-    books: []
+    books: [],
+    // chequenlooo
+    agregarLibro,
 }
 
 libreriaFunciones.addBook("La maquina del tiempo")
