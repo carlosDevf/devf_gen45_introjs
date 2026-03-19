@@ -30,11 +30,12 @@ const mostrarLibrosLeidos = function () {
 agregarLibro("el principito")
 agregarLibro("El rey leon")
 agregarLibro("El señor de los anillos")
+agregarLibro("El señor de los anillos las dos torres")
 agregarLibro("El señor de las moscas")
 mostrarLibrosLeidos()
 
 // estilo para crear funciones funcion flecha
-
+// JS metodos de array: find => filter
 const mostarUltimoLibro = () => {
     // pop: // "sacar" el ultimo elemento que entro al array y modifica el array original
     /* const ultimo = librosLeidos.pop() */
@@ -63,8 +64,21 @@ mostrarLibrosLeidos()
 // librosLeidos[i]
 // lenght < libro....
 // i++
+// algoritmos de busqueda
+// divide y veceras array
+// Arbol de desicion
+// debe estar ordenado*****
 const buscarLibro = function (libroBuscar) {
-    for (const libro of librosLeidos) {
+
+    const middle = Math.floor(librosLeidos.length / 2)
+    console.log(middle)
+
+    const left = librosLeidos.slice(0, middle)
+    const right = librosLeidos.slice(middle, librosLeidos.length)
+    console.log(left, 'izq')
+    console.log(right, 'der')
+
+    for (const libro of left) {
         console.log(libro)
         if (libro === libroBuscar) {
             console.log("aca esta!!!")
@@ -74,4 +88,6 @@ const buscarLibro = function (libroBuscar) {
     }
 }
 
-buscarLibro("El rey leon")
+/* buscarLibro("El rey leon") */
+// sort(a, b): acomodar objetos* a - b, b - a
+console.log(librosLeidos.find((valor, index) => valor === "El señor de los anillos"))
