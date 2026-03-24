@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comenta APP</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <nav class="h-[60px]"></nav>
+    <h1>Comenta APP dev.f</h1>
+    <div class="w-full relative_notify">
+        <span id="notify-succes" class="notify h-10 bg-blue-800 text-white rounded-full px-4 flex item-center">
+            Gracias por añadir un comentario
+        </span>
+    </div>
+    <div>
+        <input placeholder="comentario" class="border rounded-full px-4" />
+        <button class="bg-green-800 rounded-full px-4 text-white" id="btn_enviar">Enviar</button>
+    </div>
+    <ul id="comment_box" class="mt-10">
+        <li>
+            <div class="comment_user border rounded-sm p-2 m-4">
+                <div class="flex items-end">
+                    <img class="w-[40px] bg-blue-700 hover:bg-blue-300 hover:cursor-pointer rounded-full"
+                        src="https://static.vecteezy.com/system/resources/thumbnails/027/842/188/small/user-ecommerce-icon-fill-style-png.png">
+                    <span class="text-lg">@cchavezmx</span>
+                    <span class="text-sm text-slate-500">7 min ago</span>
+                </div>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cupiditate ducimus excepturi
+                    nesciunt, itaque explicabo ex quas cumque facere nulla eius aperiam aliquam minima totam
+                    provident,
+                    asperiores alias similique et!
+                </p>
+                <div>
+                    <button>👍</button>
+                    <button>👎</button>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <script src="./main.js"></script>
+</body>
+
+</html>

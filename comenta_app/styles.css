@@ -1,0 +1,14 @@
+.notify {
+    /* oculta pero sigue estando dentro de html */
+    /* display: none; */
+    /* oculta completamente dentro del html */
+    visibility: hidden;    
+    position: sticky;
+    top: 10px;
+    right: 0;
+    
+}
+
+.relative_notify {
+    position: relative;
+}

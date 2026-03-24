@@ -25,6 +25,7 @@ const contenedorLibros = document.getElementById("lista_libros")
 // moderna ***
 
 // Eventos // funciones anonimas
+// 
 botonEnviar.addEventListener("click", (evento) => {
     evento.preventDefault()
     const libro = inputLibro.value
