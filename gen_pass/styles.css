@@ -1,0 +1,77 @@
+:root {
+  /* MODO LIGHT (Valores por defecto) */
+  --bg-color: #f0f0f2;
+  --card-color: #ffffff;
+  --gray-text: #74737a;
+  --main-text: #24232c;
+  --input-bg: #e6e5ea;
+}
+
+.dark {
+  /* MODO DARK */
+  --bg-color: #18171f;
+  --card-color: #24232c;
+  --gray-text: #817d92;
+  --main-text: #e6e5ea;
+  --input-bg: #18171f;
+}
+
+body {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+/* Estilo del Slider / Rango */
+input[type="range"] {
+  -webkit-appearance: none;
+  background: #18171f;
+  height: 8px;
+  width: 100%;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: #e6e5ea;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  background: #18171f;
+  border-color: #2cbc3d;
+}
+
+/* Estilo de los Checkboxes */
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e6e5ea;
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+  transition: all 0.2s ease;
+}
+input[type="checkbox"]:hover {
+  border-color: #2cbc3d;
+}
+input[type="checkbox"]::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  transform: scale(0);
+  background-color: #18171f;
+  transition: 120ms transform ease-in-out;
+}
+input[type="checkbox"]:checked {
+  background-color: #2cbc3d;
+  border-color: #2cbc3d;
+}
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}

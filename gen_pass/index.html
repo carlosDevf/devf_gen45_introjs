@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Contraseñas</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        // Usamos variables CSS para que respondan al modo
+                        'app-bg': 'var(--bg-color)',
+                        'app-card': 'var(--card-color)',
+                        'app-green': '#2cbc3d',
+                        'app-gray': 'var(--gray-text)',
+                        'app-text': 'var(--main-text)',
+                    },
+                    fontFamily: {
+                        mono: ['"Space Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+</head>
+<body class="bg-app-bg font-mono min-h-screen flex items-center justify-center text-app-text p-4">
+    <button id="theme-toggle" class="absolute top-5 right-5 p-3 rounded-full bg-app-card text-app-green border border-app-green/30 hover:scale-110 transition-transform">
+        <i id="theme-icon" class="fa-solid fa-moon"></i>
+    </button>
+    <main class="w-full max-w-[450px]">
+        
+        <h1 class="text-app-gray text-center text-lg md:text-xl font-bold mb-6">Generador de Contraseñas</h1>
+
+        <div class="bg-app-card p-4 md:p-5 flex justify-between items-center mb-4 md:mb-6">
+            <span id="final_password" class="text-2xl md:text-3xl opacity-60">P4$5W0rD!</span>
+            <button class="text-app-green hover:text-white transition-colors text-xl md:text-2xl">
+                <i class="fa-regular fa-copy"></i>
+            </button>
+        </div>
+
+        <div class="bg-app-card p-4 md:p-6 md:pb-8">
+            
+            <div class="flex justify-between items-center mb-4 md:mb-6">
+                <span class="text-sm md:text-[18px]">Longitud de Caracteres</span>
+                <span id="length_password_value" class="text-app-green text-3xl md:text-4xl font-bold">8</span>
+            </div>
+
+            <div class="mb-8">
+                <input id="length_password" type="range" min="0" max="20" value="8">
+            </div>
+
+            <div class="flex flex-col gap-4 mb-8">
+                <label class="flex items-center gap-5 cursor-pointer group">
+                    <input id="letters_mayus" type="checkbox" checked>
+                    <span class="text-sm md:text-[16px] pt-1">Incluir Letras Mayúsculas</span>
+                </label>
+                <label class="flex items-center gap-5 cursor-pointer group">
+                    <input id="letters_mins" type="checkbox" checked>
+                    <span class="text-sm md:text-[16px] pt-1">Incluir Letras Minúsculas</span>
+                </label>
+                <label class="flex items-center gap-5 cursor-pointer group">
+                    <input id="letters_numbers" type="checkbox" checked>
+                    <span class="text-sm md:text-[16px] pt-1">Incluir Números</span>
+                </label>
+                <label class="flex items-center gap-5 cursor-pointer group">
+                    <input id="letters_symbols" type="checkbox" checked>
+                    <span class="text-sm md:text-[16px] pt-1">Incluir Símbolos</span>
+                </label>
+            </div>
+
+            <div class="bg-app-bg px-4 py-3 md:py-4 flex justify-between items-center mb-6 md:mb-8">
+                <span class="text-app-gray text-sm md:text-[16px] uppercase font-bold">Fuerza</span>
+                <div class="flex gap-2">
+                    <div id="level_1" class="w-[10px] h-[28px] border-2 border-app-text"></div>
+                    <div id="level_2" class="w-[10px] h-[28px] border-2 border-app-text"></div>
+                    <div id="level_3" class="w-[10px] h-[28px] border-2 border-app-text"></div>
+                    <div id="level_4" class="w-[10px] h-[28px] border-2 border-app-text"></div>
+                </div>
+            </div>
+
+            <button id="password_generator" class="w-full bg-app-green text-app-bg font-bold text-sm md:text-[18px] p-4 flex justify-center items-center gap-4 uppercase transition-all border-2 border-transparent hover:bg-transparent hover:text-app-green hover:border-app-green">
+                <span>Generar</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+            
+        </div>
+    </main>
+<script src="./main.js"></script>
+</body>
+</html>
