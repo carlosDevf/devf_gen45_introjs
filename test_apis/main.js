@@ -1,52 +1,124 @@
 const container = document.getElementById("root")
-
+const searchInput = document.getElementById("searchInput")
+const prevBtn = document.getElementById("prevBtn")
+const nextBtn = document.getElementById("nextBtn")
+const statusMessage = document.getElementById("statusMessage")
 
 const requestOptions = {
   method: "GET",
-  redirect: "follow" /// 
-};
+  redirect: "follow"
+}
 
-fetch("https://rickandmortyapi.com/api/character?search=rick", requestOptions)
-  .then((response) => response.json()) // 200ok toma la respuesta y la va a PARSEAR
-  .then((r) => {
-    // el response es la respuesta del servidor / de la api / metodo
-    console.log("estoy en el segundo then")
-    /// metodo de interacion
-    /// filter, find, forEach, map /// for 
-    // map: crea un arreglo de otro arreglo
-    const pResult = r.results.map((personaje) => {
-        const name = personaje.name
-        const image = personaje.image
+let timer
+let currentPage = 1
+let currentName = "rick"
+let currentInfo = null
+
+function renderCharacters(characters) {
+  container.innerHTML = ""
+
+  characters.forEach((element) => {
+    const card = document.createElement("div")
+    card.classList.add("card")
+
+    const img = document.createElement("img")
+    img.src = element.image
+    img.alt = element.name
+
+    const h3 = document.createElement("h3")
+    h3.innerText = element.name
+
+    card.appendChild(img)
+    card.appendChild(h3)
+
+    container.appendChild(card)
+  })
+}
+
+function updatePagination(info) {
+  prevBtn.disabled = !info || !info.prev
+  nextBtn.disabled = !info || !info.next
+}
+
+function updateStatus(total) {
+  const cleanName = currentName.trim()
+
+  if (!total) {
+    statusMessage.innerText = cleanName
+      ? `No se encontraron personajes para "${cleanName}".`
+      : "No se encontraron personajes."
+    return
+  }
+
+  statusMessage.innerText = `Página ${currentPage} de ${currentInfo.pages} · ${total} resultados`
+}
+
+function searchCharacters(searchName = "", page = 1) {
+  const params = new URLSearchParams()
+  params.set("page", page)
+
+  if (searchName.trim()) {
+    params.set("name", searchName.trim())
+  }
+
+  return fetch(`https://rickandmortyapi.com/api/character?${params.toString()}`, requestOptions)
+    .then((response) => {
+      if (response.status === 404) {
         return {
-            name,
-            image
+          info: null,
+          results: []
         }
+      }
+
+      if (!response.ok) {
+        throw new Error(`API error: ${response.status}`)
+      }
+
+      return response.json()
     })
-    // solamente buscamos el primer elemento
-    const primerPesonaje = pResult[0]
-    //  <div class="card">
-    //      <h3>Rick Sanchez</h3>
-    //      <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg">            
-    //   </div>
+}
 
-    // for moderno
-    pResult.forEach(element => {
-        const card = document.createElement("div")
-        // classList
-        card.classList.add("card")
-    
-        const img = document.createElement("img")    
-        img.src = element.image
+function loadCharacters(searchName = currentName, page = currentPage) {
+  currentName = searchName
+  currentPage = page
+  statusMessage.innerText = "Buscando..."
 
-        const h3 = document.createElement("h3")
-        h3.innerText = element.name
+  searchCharacters(searchName, page)
+    .then((response) => {
+      currentInfo = response.info
+      renderCharacters(response.results)
+      updatePagination(response.info)
+      updateStatus(response.results.length ? response.info.count : 0)
+    })
+    .catch((error) => {
+      console.error(error)
+      currentInfo = null
+      container.innerHTML = ""
+      updatePagination(null)
+      statusMessage.innerText = "Ocurrió un error al consultar la API."
+    })
+}
 
-        card.appendChild(img)
-        card.appendChild(h3)
+searchInput.value = currentName
 
-        container.appendChild(card) 
-    });
-    
+searchInput.addEventListener("input", (event) => {
+  clearTimeout(timer)
 
-  }) // si el PARSER fue OK
-  .catch((error) => console.error(error));
+  timer = setTimeout(() => {
+    loadCharacters(event.target.value, 1)
+  }, 300)
+})
+
+prevBtn.addEventListener("click", () => {
+  if (currentInfo && currentInfo.prev) {
+    loadCharacters(currentName, currentPage - 1)
+  }
+})
+
+nextBtn.addEventListener("click", () => {
+  if (currentInfo && currentInfo.next) {
+    loadCharacters(currentName, currentPage + 1)
+  }
+})
+
+loadCharacters(currentName, currentPage)

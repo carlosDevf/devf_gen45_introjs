@@ -1,9 +1,204 @@
-.card{
-    width: 120px;
-    height: auto;
-    background-color: bisque;
+:root {
+    --bg: #07111f;
+    --bg-accent: #0d1d31;
+    --surface: rgba(10, 24, 40, 0.82);
+    --surface-strong: rgba(14, 33, 54, 0.96);
+    --border: rgba(158, 255, 218, 0.18);
+    --text: #f3fbff;
+    --muted: #a8c1d8;
+    --primary: #7cffcb;
+    --secondary: #73d5ff;
+    --shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 40px 20px 56px;
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(circle at top left, rgba(124, 255, 203, 0.2), transparent 28%),
+        radial-gradient(circle at top right, rgba(115, 213, 255, 0.16), transparent 24%),
+        linear-gradient(160deg, var(--bg) 0%, var(--bg-accent) 100%);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent);
+}
+
+h1 {
+    width: min(1100px, 100%);
+    margin: 0 auto 28px;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--text);
+    text-shadow: 0 0 24px rgba(124, 255, 203, 0.22);
+}
+
+.controls {
+    width: min(1100px, 100%);
+    margin: 0 auto 18px;
+    display: grid;
+    gap: 14px;
+}
+
+.controls input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid rgba(124, 255, 203, 0.22);
+    border-radius: 14px;
+    outline: none;
+    background: rgba(8, 22, 36, 0.82);
+    color: var(--text);
+    font: inherit;
+    box-shadow: var(--shadow);
+}
+
+.controls input::placeholder {
+    color: var(--muted);
+}
+
+.controls input:focus {
+    border-color: rgba(124, 255, 203, 0.5);
+    box-shadow: 0 0 0 4px rgba(124, 255, 203, 0.08);
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.actions button {
+    min-width: 120px;
+    padding: 12px 16px;
+    border: 1px solid rgba(115, 213, 255, 0.2);
+    border-radius: 12px;
+    background: var(--surface-strong);
+    color: var(--text);
+    font: inherit;
+    cursor: pointer;
+    transition: transform 180ms ease, border-color 180ms ease, opacity 180ms ease;
+}
+
+.actions button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    border-color: rgba(124, 255, 203, 0.42);
+}
+
+.actions button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.status-message {
+    width: min(1100px, 100%);
+    min-height: 24px;
+    margin: 0 auto 24px;
+    color: var(--muted);
+    text-align: center;
+}
+
+.root {
+    width: min(1100px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
+    padding: 20px 18px 18px;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    background: linear-gradient(180deg, rgba(15, 34, 55, 0.95), var(--surface));
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(124, 255, 203, 0.12), transparent 45%);
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(124, 255, 203, 0.4);
+    box-shadow: 0 22px 50px rgba(0, 0, 0, 0.42);
 }
 
 .card img {
-    width: 60px;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 140px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    border: 3px solid rgba(124, 255, 203, 0.28);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.card h3 {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    font-size: 1.02rem;
+    line-height: 1.35;
+    color: var(--text);
+}
+
+@media (max-width: 640px) {
+    body {
+        padding-inline: 16px;
+        padding-top: 28px;
+    }
+
+    .root {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 16px;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    .actions button {
+        width: 100%;
+    }
+
+    .card {
+        padding: 16px 14px;
+        border-radius: 18px;
+    }
+
+    .card img {
+        max-width: 110px;
+        margin-bottom: 12px;
+    }
 }
