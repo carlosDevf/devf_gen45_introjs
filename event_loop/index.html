@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Pedidos - Event Loop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.35s ease-out forwards;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+        .pulse-ring::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 2px solid currentColor;
+            animation: pulse-ring 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white min-h-screen flex items-center justify-center p-4 font-sans">
+
+    <div class="w-full max-w-md">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-blue-600/20 text-3xl mb-4 border border-blue-500/30 shadow-lg shadow-blue-900/30">
+                🍔
+            </div>
+            <h1 class="text-3xl font-bold tracking-tight mb-1">Simulador de Pedidos</h1>
+            <p class="text-slate-400 text-sm">Visualiza el Event Loop con Promesas</p>
+        </div>
+
+        <!-- Card -->
+        <div class="bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-slate-700/60 overflow-hidden">
+            <!-- Toolbar -->
+            <div class="flex items-center justify-between px-6 py-5 border-b border-slate-700/50">
+                <h2 class="text-lg font-semibold text-slate-100">Pedidos</h2>
+                <button id="btn-pedido" class="bg-blue-600 hover:bg-blue-500 active:bg-blue-700 transition-all duration-200 px-4 py-2 rounded-lg font-medium text-sm flex items-center gap-2 shadow-lg shadow-blue-900/40 hover:shadow-blue-900/60 hover:-translate-y-0.5">
+                    <span>➕</span>
+                    <span>Nuevo Pedido</span>
+                </button>
+            </div>
+
+            <!-- Lista -->
+            <ul id="lista-pedidos" class="max-h-80 overflow-y-auto px-4 py-3 space-y-2">
+                <!-- Se inyectan dinámicamente -->
+            </ul>
+
+            <!-- Estado vacío -->
+            <div id="estado-vacio" class="text-center px-6 py-12">
+                <p class="text-4xl mb-3 opacity-80">📭</p>
+                <p class="text-slate-400 font-medium">No hay pedidos activos</p>
+                <p class="text-slate-500 text-sm mt-1">Presiona <span class="text-blue-400 font-medium">Nuevo Pedido</span> para comenzar</p>
+            </div>
+        </div>
+
+        <!-- Tip -->
+        <div class="mt-5 bg-slate-800/40 rounded-xl p-4 border border-slate-700/40 text-xs text-slate-400 flex items-start gap-3">
+            <span class="text-yellow-400 text-lg leading-none mt-0.5">💡</span>
+            <div>
+                <p class="font-medium text-slate-300 mb-0.5">Observa la consola (F12)</p>
+                <p>El <code class="bg-slate-700 px-1 py-0.5 rounded text-slate-200">main()</code> original de <code class="bg-slate-700 px-1 py-0.5 rounded text-slate-200">promesas.js</code> imprime sus mensajes en la consola del navegador para que compares con la UI.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script del ejercicio -->
+    <script src="promesas.js"></script>
+
+    <!-- Script de la UI -->
+</body>
+</html>
