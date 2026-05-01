@@ -10,8 +10,8 @@ Teaching material for the DEVF bootcamp "Intro G45" JavaScript module. It is **n
 
 No install step. Pick the right runner based on where the file lives:
 
-- **Standalone lesson / reto scripts at the repo root** (`clase_02.js`, `reto_03.js`, `reto_03_objetos.js`, `reto_04_funciones.js`, `main.js`) and `event_loop/*.js`, `logica_alg/*.js` — run with Node: `node clase_02.js`. They use `console.log` only, no DOM.
-- **Mini-apps** (`DOM/`, `gen_pass/`, `comenta_app/`) — each has its own `index.html` that loads `./main.js`. Open the HTML directly in a browser (`xdg-open DOM/index.html`) or serve the folder (`python3 -m http.server` then visit `/DOM/`). They rely on CDN Tailwind/Bulma/Font Awesome — needs network.
+- **Standalone lesson / reto scripts at the repo root** (`clase_02.js`, `reto_03.js`, `reto_03_objetos.js`, `reto_04_funciones.js`, `main.js`) and `event_loop/*.js`, `logica_alg/*.js`, `metodos_arreglos/*.js` — run with Node: `node clase_02.js`. They use `console.log` only, no DOM.
+- **Mini-apps** (`DOM/`, `gen_pass/`, `comenta_app/`, `test_apis/`, `event_loop/`) — each has its own `index.html` that loads `./main.js`. Open the HTML directly in a browser (`xdg-open DOM/index.html`) or serve the folder (`python3 -m http.server` then visit `/DOM/`). They rely on CDN Tailwind/Bulma/Font Awesome — needs network. `test_apis/` also requires internet access to hit the Rick and Morty API.
 - **Root `index.html`** is a scratchpad whose `<script src>` is rewritten per class to point at whichever root-level file is being demoed that day. Don't treat its current target as canonical; update the tag to match what you're demonstrating.
 - **Regenerate `README.docx`** from the embedded base64: `python save_README_docx.py` (or `python decode_and_save.py`, which self-deletes after running). Both exist because the docx is distributed as a self-extracting Python script.
 
@@ -23,9 +23,11 @@ Lessons accumulate over the course. Files are ordered by topic, not by dependenc
 - `DOM/` — primer ejemplo de manipulación del DOM (formulario de libros, Bulma).
 - `comenta_app/` — DOM + `classList` API + eventos (Tailwind via CDN).
 - `gen_pass/` — generador de contraseñas con UI de fortaleza, dark mode vía `localStorage`, Tailwind config inline.
-- `event_loop/` — `setTimeout`, stack, promesas (`promesas.js`).
+- `event_loop/` — `setTimeout`, stack, promesas (`promesas.js`). También tiene `index.html`: un Simulador de Pedidos visual que carga `promesas.js` en el navegador para ver el event loop con UI en tiempo real.
 - `logica_alg/` — destructuring, `map`/`forEach`, ejemplo de "tarjetas" con template strings.
-- `clase_js/` — carpeta vacía reservada para la siguiente sesión.
+- `metodos_arreglos/` — métodos de arreglos: `find`, `filter`, `map`, `forEach`, `some`, `every`, `sort`, `reduce`. `main.js` es la clase; `reto.js` es el ejercicio resuelto por alumnos.
+- `test_apis/` — mini-app de búsqueda de personajes de Rick and Morty. Demuestra `fetch`, promesas, debounce, paginación y renderizado dinámico de DOM. `SEARCH_GUIDE.md` es la guía de referencia de la API que se entrega a los alumnos.
+- `respuestas/` — fragmentos de soluciones en Markdown (e.g. `pedidos.js.md` contiene el script UI que complementa `event_loop/index.html`).
 
 ## Conventions to respect
 
